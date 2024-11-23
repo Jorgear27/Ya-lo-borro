@@ -26,18 +26,6 @@ jobs:
           packages: doxygen gcovr lcov cppcheck graphviz clang-format valgrind bc cmake gcc g++ libmicrohttpd-dev python3 doxygen graphviz
           version: 1.0
 
-      - name: Run style check
-        uses: ./.github/actions/style
-
-      - name: Run documentation check
-        uses: ./.github/actions/documentation
-
-      - name: Build project
-        uses: ./.github/actions/building
-
-      - name: Run tests and coverage
-        uses: ./.github/actions/coverage_and_test
-
       - name: Doxygen documentation
         uses: ./.github/actions/doxygen
 

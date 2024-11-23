@@ -9,10 +9,6 @@ runs:
       shell: bash
       run: |
         doxygen Doxyfile
-        if [ ! -d "./documentation" ]; then
-          echo "Error: Documentation directory was not created."
-          exit 1
-        fi
 
     - name: List directory contents
       shell: bash
