@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: gcovr lcov cppcheck graphviz clang-format valgrind bc cmake gcc g++ libmicrohttpd-dev python3
+          packages: doxygen gcovr lcov cppcheck graphviz clang-format valgrind bc cmake gcc g++ libmicrohttpd-dev python3
           version: 1.0
 
       - name: Run style check
@@ -44,11 +44,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install dependencies
+      - name: Install Doxygen
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: doxygen
-          version: 1.0   
+          packages: doxygen gcovr lcov cppcheck graphviz clang-format valgrind bc cmake gcc g++ libmicrohttpd-dev python3
+          version: 1.0
 
       - name: Generate documentation
         run: doxygen Doxyfile
@@ -56,9 +56,8 @@ jobs:
       - name: Verify documentation generation
         run: test -d ./documentation
 
-
       - name: Upload documentation as artifact
         uses: actions/upload-artifact@v3
         with:
           name: Doxygen-Docs
-          path: ./documentation
+          path: doxygen_docs.tar.gz
