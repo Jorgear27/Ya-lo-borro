@@ -16,11 +16,11 @@ runs:
 
     - name: Verify documentation generation
       shell: bash
-      run: test -d ./doxygen_output
+      run: test -d ./documentation
 
-    - name: Compress doxygen_output directory
+    - name: Compress documentation directory
       shell: bash
-      run: tar -czvf doxygen_docs.tar.gz ./doxygen_output
+      run: tar -czvf doxygen_docs.tar.gz ./documentation
 
     - name: Upload documentation as artifact
       uses: actions/upload-artifact@v3
