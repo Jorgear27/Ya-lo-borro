@@ -44,20 +44,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install Doxygen
-        run: sudo apt-get install doxygen -y
-
       - name: Generate documentation
         run: doxygen Doxyfile
 
       - name: Verify documentation generation
         run: test -d ./documentation
 
-      - name: Compress documentation directory
-        run: tar -czvf doxygen_docs.tar.gz ./documentation
 
       - name: Upload documentation as artifact
         uses: actions/upload-artifact@v3
         with:
           name: Doxygen-Docs
-          path: doxygen_docs.tar.gz
+          path: ./documentation
