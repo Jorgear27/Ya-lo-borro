@@ -10,13 +10,15 @@ runs:
       run: doxygen Doxyfile
 
     - name: Verify documentation generation
+      shell: bash
       run: test -d ./documentation
 
     - name: Compress documentation
+      shell: bash
       run: tar -czvf doxygen_docs.tar.gz ./documentation
 
     - name: Upload documentation as artifact
       uses: actions/upload-artifact@v3
       with:
         name: Doxygen-Docs
-        path: documentation.tar.gz
+        path: doxygen_docs.tar.gz
