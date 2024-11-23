@@ -14,6 +14,10 @@ runs:
       shell: bash
       run: ls -la
 
+    - name: Doxygen errors
+      shell: bash
+      run: cat dox_errors.txt
+
     - name: Verify documentation generation
       shell: bash
       run: test -d ./documentation
