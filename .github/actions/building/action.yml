@@ -1,0 +1,41 @@
+name: "CMake Build with Conan and Submodule"
+description: "Executes a compilation."
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Set up Python environment
+      shell: bash
+      run: |
+        python3 -m venv venv
+        source venv/bin/activate
+        pip install conan
+
+    - name: Install dependencies with Conan
+      shell: bash
+      run: |
+        source venv/bin/activate
+        conan profile detect --force
+        conan install . --build=missing --settings=build_type=Debug
+
+    - name: Compile
+      shell: bash
+      run: |
+
+        SRC_FOLDER=$(pwd)/src
+
+        echo "Running command: cmake .. -DCMAKE_TOOLCHAIN_FILE=./build/Debug/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Debug -DRUN_COVERAGE=TRUE && make -j$(nproc)"
+        cd build
+        cmake .. -DCMAKE_TOOLCHAIN_FILE=./build/Debug/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Debug -DRUN_COVERAGE=TRUE && make -j$(nproc)
+        cd ..
+
+    - name: Initialize and compile submodule
+      shell: bash
+      run: |
+        cd Metrics_Monitoring_System
+        ./build.sh
+
+    - name: Set libpromhttp.so path
+      shell: bash
+      run: echo "LD_LIBRARY_PATH=${GITHUB_WORKSPACE}/Metrics_Monitoring_System/prometheus-client-c/buildpromhttp/libpromhttp.so:/usr/local/lib:\$LD_LIBRARY_PATH" >> $GITHUB_ENV
