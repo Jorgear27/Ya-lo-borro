@@ -7,7 +7,12 @@ runs:
 
     - name: Generar documentación
       shell: bash
-      run: doxygen Doxyfile
+      run: |
+        doxygen Doxyfile
+        if [ ! -d "./documentation" ]; then
+          echo "Error: Documentation directory was not created."
+          exit 1
+        fi
 
     - name: Verify documentation generation
       shell: bash
