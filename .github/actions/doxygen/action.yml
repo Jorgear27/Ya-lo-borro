@@ -6,13 +6,16 @@ runs:
   steps:
 
     - name: Generar documentación
+      shell: bash
       run: |
         doxygen Doxyfile
 
     - name: List directory contents
+      shell: bash
       run: ls -la
 
     - name: Verify documentation generation
+      shell: bash
       run: test -d ./doxygen_output
 
     - name: Compress doxygen_output directory
