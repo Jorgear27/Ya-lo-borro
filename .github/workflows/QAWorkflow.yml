@@ -60,4 +60,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Doxygen-Docs
-          path: doxygen_docs.tar.gz
+          path: ./documentation
