@@ -14,6 +14,10 @@ runs:
           exit 1
         fi
 
+    - name: List directory contents
+      shell: bash
+      run: ls -la
+
     - name: Verify documentation generation
       shell: bash
       run: test -d ./documentation
