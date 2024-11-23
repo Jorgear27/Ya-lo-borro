@@ -6,6 +6,7 @@ runs:
   steps:
 
     - name: Ensure write permissions
+      shell: bash
       run: chmod -R u+w .
 
     - name: Generar documentación
