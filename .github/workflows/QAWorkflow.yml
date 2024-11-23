@@ -4,9 +4,7 @@ on:
   push:
     # Push events
     branches:
-      - main
-      - develop
-      - TP2-SOI
+      - master
   workflow_dispatch:
   pull_request:
     # Pull request events
