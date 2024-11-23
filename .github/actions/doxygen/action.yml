@@ -6,21 +6,18 @@ runs:
   steps:
 
     - name: Generar documentación
-      shell: bash
       run: |
         doxygen Doxyfile
 
     - name: List directory contents
-      shell: bash
       run: ls -la
 
     - name: Verify documentation generation
-      shell: bash
-      run: test -d ./documentation
+      run: test -d ./doxygen_output
 
-    - name: Compress documentation
+    - name: Compress doxygen_output directory
       shell: bash
-      run: tar -czvf doxygen_docs.tar.gz ./documentation
+      run: tar -czvf doxygen_docs.tar.gz ./doxygen_output
 
     - name: Upload documentation as artifact
       uses: actions/upload-artifact@v3
