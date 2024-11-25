@@ -188,17 +188,25 @@ void test_echo_quoted_message(void) {
 
 void test_show_help(void) {
     // Redirect stdout to a buffer
-    char buffer[BUFFER_SIZE*4];
-    freopen("/dev/null", "a", stdout);
-    setbuf(stdout, buffer);
+    char buffer[BUFFER_SIZE];
+    FILE* stream = fmemopen(buffer, sizeof(buffer), "w");
+    if (stream == NULL) {
+        TEST_FAIL_MESSAGE("Failed to open buffer stream");
+    }
+
+    // Save the original stdout
+    FILE* original_stdout = stdout;
+    stdout = stream;
 
     // Call the show_help function
     show_help();
 
-    // Restore stdout
-    freopen("/dev/tty", "a", stdout);
+    // Restore the original stdout
+    fflush(stream);
+    stdout = original_stdout;
 
     // Check the output
+    fclose(stream);
     const char* expected_output = "Available commands:\n"
                                   "  cd <directory>    - Changes current directoryl\n"
                                   "  clr               - Cleans the screen\n"
