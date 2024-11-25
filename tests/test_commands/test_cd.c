@@ -102,7 +102,7 @@ int main(void) {
     RUN_TEST(test_change_directory);
     RUN_TEST(test_echo_plain_message);
     RUN_TEST(test_echo_quoted_message);
-    //RUN_TEST(test_show_help);
+    RUN_TEST(test_show_help);
     RUN_TEST(test_is_internal_command);
     RUN_TEST(test_execute_command);
     RUN_TEST(test_execute_program);
@@ -110,7 +110,7 @@ int main(void) {
     RUN_TEST(test_parse_input);
     RUN_TEST(test_parse_input_with_input_redirection);
     RUN_TEST(test_parse_pipes);
-    //RUN_TEST(test_quit_shell);
+    RUN_TEST(test_quit_shell);
     RUN_TEST(test_execute_batch_file);
     return UNITY_END();
 }
@@ -474,10 +474,13 @@ void test_execute_batch_file(void) {
 }
 
 void setUp(void) {
-    // Set up the test environment
+    // Clear buffers if necessary
+    fflush(stdout);
+    fflush(stderr);
 }
 
 void tearDown(void) {
-    // Clean up the test environment
+    // Clear buffers if necessary
     fflush(stdout);
+    fflush(stderr);
 }
