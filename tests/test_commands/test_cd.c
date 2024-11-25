@@ -479,4 +479,5 @@ void setUp(void) {
 
 void tearDown(void) {
     // Clean up the test environment
+    fflush(stdout);
 }
