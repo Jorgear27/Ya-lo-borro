@@ -2,7 +2,7 @@
 #include "unity.h"
 
 /**
- * @brief Buffer size for the tests
+ * @brief Big buffer size for the tests
  *
  */
 #define CWDBUF 1024
@@ -188,7 +188,7 @@ void test_echo_quoted_message(void) {
 
 void test_show_help(void) {
     // Redirect stdout to a buffer
-    char buffer[BUFFER_SIZE];
+    char buffer[CWDBUF];
     FILE* stream = fmemopen(buffer, sizeof(buffer), "w");
     if (stream == NULL) {
         TEST_FAIL_MESSAGE("Failed to open buffer stream");
