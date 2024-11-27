@@ -14,6 +14,9 @@ jobs:
       CONFIG_FILE_PATH: $(pwd)/config.json
       MONITOR_PATH: $(pwd)/Metrics_Monitoring_System/metrics
       MONITOR_EXECUTABLE: ./metrics
+      echo "CONFIG_FILE_PATH=$CONFIG_FILE_PATH" >> $GITHUB_ENV
+      echo "MONITOR_PATH=$MONITOR_PATH" >> $GITHUB_ENV
+      echo "MONITOR_EXECUTABLE=$MONITOR_EXECUTABLE" >> $GITHUB_ENV
 
     steps:
       - name: Checkout repository
