@@ -9,6 +9,7 @@ runs:
       run: |
         # We only make check, not changes
         DOX_CONF_FILE=$(pwd)/Doxyfile
+        echo "Doxyfile path: $DOX_CONF_FILE"
 
         # Append to DOX_CONF_FILE input source directories, if you have libs, add $(pwd)/lib
         {
@@ -35,6 +36,10 @@ runs:
           exit 0
         fi
 
+    - name: Generate documentation
+      shell: bash
+      run: doxygen Doxyfile
+
     # Upload errors as an artifact, when failed
     - uses: actions/upload-artifact@v3
       if: failure()
@@ -44,9 +49,8 @@ runs:
         retention-days: 1
 
     # Upload documentation as an artifact
-    - name: Upload Doxygen documentation
+    - name: Upload documentation as artifact
       uses: actions/upload-artifact@v3
       with:
-        name: Doxygen documentation
-        path: ./docs
-        retention-days: 1
+        name: Doxygen
+        path: ./documentation
