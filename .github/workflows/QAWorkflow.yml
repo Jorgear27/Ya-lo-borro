@@ -28,7 +28,6 @@ jobs:
       - name: Set up environment
             run: |
               echo "CONFIG_FILE_PATH=$CONFIG_FILE_PATH" >> $GITHUB_ENV
-              echo "PIPE_PATH=$PIPE_PATH" >> $GITHUB_ENV
               echo "MONITOR_PATH=$MONITOR_PATH" >> $GITHUB_ENV
               echo "MONITOR_EXECUTABLE=$MONITOR_EXECUTABLE" >> $GITHUB_ENV
 
