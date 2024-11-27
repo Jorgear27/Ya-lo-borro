@@ -1,10 +1,6 @@
 name: QA Workflow
 
 on:
-  push:
-    # Push events
-    branches:
-      - master
   workflow_dispatch:
   pull_request:
     # Pull request events
@@ -14,11 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      CONFIG_FILE_PATH: $(pwd)/config.json
-      MONITOR_PATH: $(pwd)/Metrics_Monitoring_System
-      MONITOR_EXECUTABLE: ./metrics
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -26,10 +17,13 @@ jobs:
           submodules: recursive
 
       - name: Set up environment
-            run: |
-              echo "CONFIG_FILE_PATH=$CONFIG_FILE_PATH" >> $GITHUB_ENV
-              echo "MONITOR_PATH=$MONITOR_PATH" >> $GITHUB_ENV
-              echo "MONITOR_EXECUTABLE=$MONITOR_EXECUTABLE" >> $GITHUB_ENV
+        run: |
+          CONFIG_FILE_PATH=$(pwd)/config.json
+          MONITOR_PATH=$(pwd)/Metrics_Monitoring_System/build/metrics
+          MONITOR_EXECUTABLE=./metrics
+          echo "CONFIG_FILE_PATH=$CONFIG_FILE_PATH" >> $GITHUB_ENV
+          echo "MONITOR_PATH=$MONITOR_PATH" >> $GITHUB_ENV
+          echo "MONITOR_EXECUTABLE=$MONITOR_EXECUTABLE" >> $GITHUB_ENV
 
       - name: Install dependencies
         uses: awalsh128/cache-apt-pkgs-action@latest
