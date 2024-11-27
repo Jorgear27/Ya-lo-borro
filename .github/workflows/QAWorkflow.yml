@@ -14,11 +14,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      CONFIG_FILE_PATH: $(pwd)/config.json
+      MONITOR_PATH: $(pwd)/Metrics_Monitoring_System
+      MONITOR_EXECUTABLE: ./metrics
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           submodules: recursive
+
+      - name: Set up environment
+            run: |
+              echo "CONFIG_FILE_PATH=$CONFIG_FILE_PATH" >> $GITHUB_ENV
+              echo "PIPE_PATH=$PIPE_PATH" >> $GITHUB_ENV
+              echo "MONITOR_PATH=$MONITOR_PATH" >> $GITHUB_ENV
+              echo "MONITOR_EXECUTABLE=$MONITOR_EXECUTABLE" >> $GITHUB_ENV
 
       - name: Install dependencies
         uses: awalsh128/cache-apt-pkgs-action@latest

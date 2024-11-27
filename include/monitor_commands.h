@@ -26,7 +26,7 @@
  * @brief Path of the configuration file.
  *
  */
-#define CONFIG_FILE "../config.json"
+#define CONFIG_FILE getenv("CONFIG_FILE_PATH")
 
 /**
  * @brief Path of the pipe to communicate with the monitoring program.
@@ -38,13 +38,13 @@
  * @brief Path of the monitoring program.
  *
  */
-#define MONITOR_PATH "../Metrics_Monitoring_System/build/metrics"
+#define MONITOR_PATH getenv("MONITOR_PATH")
 
 /**
  * @brief Executable of the monitoring program.
  *
  */
-#define MONITOR_EXECUTABLE "./metrics"
+#define MONITOR_EXECUTABLE getenv("MONITOR_EXECUTABLE")
 
 /**
  * @brief Monitor commands supported by the shell
