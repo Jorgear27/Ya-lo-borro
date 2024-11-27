@@ -1,10 +1,6 @@
 name: QA Workflow
 
 on:
-  push:
-    # Push events
-    branches:
-      - master
   workflow_dispatch:
   pull_request:
     # Pull request events

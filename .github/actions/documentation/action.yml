@@ -42,3 +42,11 @@ runs:
         name: Doxygen errors!!!
         path: ./dox_errors.txt
         retention-days: 1
+
+    # Upload documentation as an artifact
+    - name: Upload Doxygen documentation
+      uses: actions/upload-artifact@v3
+      with:
+        name: Doxygen documentation
+        path: ./docs
+        retention-days: 1
