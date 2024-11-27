@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
             continue;
         }
 
-        // Check if the command should be run in the background or foreground
+        // Check if the command should be run in the background
         bool background = false;
         if (input[strlen(input) - 2] == '&')
         {
