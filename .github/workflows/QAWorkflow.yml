@@ -19,7 +19,7 @@ jobs:
       - name: Set up environment
         run: |
           CONFIG_FILE_PATH=$(pwd)/config.json
-          MONITOR_PATH=$(pwd)/Metrics_Monitoring_System/metrics
+          MONITOR_PATH=$(pwd)/Metrics_Monitoring_System/build/metrics
           MONITOR_EXECUTABLE=./metrics
           echo "CONFIG_FILE_PATH=$CONFIG_FILE_PATH" >> $GITHUB_ENV
           echo "MONITOR_PATH=$MONITOR_PATH" >> $GITHUB_ENV
